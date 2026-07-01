@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project 3 – Interactive Web Elements </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /> 
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!--  Header  -->
+<header>
+  <div class="container header-inner">
+    <div class="logo">Decode<span>Labs</span></div>
+    <nav>
+      <a href="#counter">Counter</a>
+      <a href="#writer">Writer</a>
+      <a href="#tasks">Tasks</a>
+      <a href="#faq">FAQ</a>
+      <a href="#theme">Theme</a>
+    </nav>
+    <div class="theme-wrap">
+      <span class="theme-label" id="theme-label">Light</span>
+      <button class="toggle-track" id="theme-toggle" aria-label="Toggle dark mode">
+        <div class="toggle-thumb" id="theme-thumb">🌙</div>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- - Hero - -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">Project 3</div>
+    <h1>Interactive <em>Web Elements</em><br>in Vanilla JS</h1>
+    <p>Master DOM manipulation, event listeners, and state management by building five interactive components from scratch.</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="val" id="hero-interactions">0</div>
+        <div class="key">Interactions</div>
+      </div>
+      <div class="meta-item">
+        <div class="val" id="hero-mutations">0</div>
+        <div class="key">DOM Mutations</div>
+      </div>
+      <div class="meta-item">
+        <div class="val">5</div>
+        <div class="key">Components</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- - DOM Pulse Bar - -->
+<div class="container" style="padding-top:28px;">
+  <div class="dom-visual">
+    <div class="pulse-dot" id="pulse-dot"></div>
+    <div class="dom-text"><strong>DOM</strong> · waiting for event…</div>
+    <div class="dom-mutation-count" id="dom-count">0 mutations</div>
+  </div>
+</div>
+
+<!-- ══ COMPONENT 1: Click Counter ══ -->
+<section class="section" id="counter">
+  <div class="container">
+    <div class="section-label">Component 01</div>
+    <h2 class="section-title">Click Counter</h2>
+    <p class="section-sub">State management in its purest form track a number, react to clicks.</p>
+    <div class="card">
+      <div class="counter-box">
+        <div class="count-display" id="count-display">0</div>
+        <div class="btn-row">
+          <button class="btn btn-danger" id="btn-dec">− Decrement</button>
+          <button class="btn btn-ghost" id="btn-reset">Reset</button>
+          <button class="btn btn-primary" id="btn-inc">+ Increment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COMPONENT 2 & 3: Writer + Tasks ══ -->
+<div class="container">
+  <div class="demos-grid">
+
+    <!-- Character Counter -->
+    <div id="writer">
+      <div class="section-label">Component 02</div>
+      <h2 class="section-title" style="font-size:1.4rem;">Live Writer</h2>
+      <p class="section-sub" style="margin-bottom:16px;">Real time feedback as you type.</p>
+      <div class="card">
+        <textarea class="char-field" id="char-textarea" rows="5" placeholder="Start typing your message here…" maxlength="200"></textarea>
+        <div class="char-bar-wrap"><div class="char-bar" id="char-bar"></div></div>
+        <div class="char-meta">
+          <span id="char-words">0 words</span>
+          <span id="char-count">0 / 200</span>
+        </div>
+        <div class="mt-16">
+          <button class="btn btn-ghost btn-sm" id="btn-clear-text">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task List -->
+    <div id="tasks">
+      <div class="section-label">Component 03</div>
+      <h2 class="section-title" style="font-size:1.4rem;">Task Manager</h2>
+      <p class="section-sub" style="margin-bottom:16px;">Create, check, and delete tasks dynamically.</p>
+      <div class="card">
+        <div id="task-input-wrap">
+          <input type="text" id="task-input" placeholder="Add a task…" maxlength="80" />
+          <button class="btn btn-primary btn-sm" id="btn-add-task">Add</button>
+        </div>
+        <ul class="task-list" id="task-list"></ul>
+        <p class="task-stats" id="task-stats">No tasks yet</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ COMPONENT 4: Accordion FAQ ══ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-label">Component 04</div>
+    <h2 class="section-title">FAQ Accordion</h2>
+    <p class="section-sub">Toggling visibility with <code>classList.toggle()</code> and CSS transitions.</p>
+
+    <div class="accordion" id="accordion">
+      <div class="acc-item" data-index="0">
+        <button class="acc-trigger">What is the DOM? <span class="acc-icon">+</span></button>
+        <div class="acc-body">
+          <p>The DOM (Document Object Model) is the browser's live, in-memory representation of your HTML page as a tree of objects (nodes). JavaScript uses <code>document.querySelector()</code> to select nodes, then reads or writes their properties to make the page react.</p>
+        </div>
+      </div>
+      <div class="acc-item" data-index="1">
+        <button class="acc-trigger">Why use <code>const</code> over <code>var</code>? <span class="acc-icon">+</span></button>
+        <div class="acc-body">
+          <p><code>const</code> is block-scoped and signals that the binding will never be reassigned — perfect for DOM references. <code>var</code> is function-scoped and prone to hoisting bugs. Default to <code>const</code>, use <code>let</code> only when the value must mutate (e.g. a counter), and avoid <code>var</code> entirely.</p>
+        </div>
+      </div>
+      <div class="acc-item" data-index="2">
+        <button class="acc-trigger">What is the IPO loop? <span class="acc-icon">+</span></button>
+        <div class="acc-body">
+          <p>Every interactive element follows <strong>Input → Process → Output</strong>. A user click is the input, your JavaScript function is the process (it reads state and applies logic), and the DOM mutation is the output (a visible change). Understanding IPO is understanding all of UI engineering.</p>
+        </div>
+      </div>
+      <div class="acc-item" data-index="3">
+        <button class="acc-trigger"><code>textContent</code> vs <code>innerHTML</code>? <span class="acc-icon">+</span></button>
+        <div class="acc-body">
+          <p>Always prefer <code>textContent</code> when inserting plain text — it safely escapes all HTML and protects against Cross-Site Scripting (XSS) attacks. Only use <code>innerHTML</code> when you genuinely need to inject markup, and even then, sanitize the input.</p>
+        </div>
+      </div>
+      <div class="acc-item" data-index="4">
+        <button class="acc-trigger">What does "decoupling" mean? <span class="acc-icon">+</span></button>
+        <div class="acc-body">
+          <p>Decoupling separates JavaScript logic from CSS presentation. Use <code>js-</code> prefixed classes as JavaScript hooks (never style them), and <code>is-</code> prefixed classes to define visual states (e.g. <code>is-active</code>, <code>is-hidden</code>). This makes your code predictable and maintainable.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COMPONENT 5: Theme Picker ══ -->
+<section class="section" id="theme" style="padding-top:0;">
+  <div class="container">
+    <div class="section-label">Component 05</div>
+    <h2 class="section-title">Color Theme Picker</h2>
+    <p class="section-sub">Dynamic style mutation — updating CSS custom properties via JavaScript.</p>
+    <div class="card">
+      <div class="palette-grid" id="palette-grid">
+        <button class="swatch active" data-name="Ocean" data-bg="#00d4aa" style="background:#00d4aa;" aria-label="Ocean teal"></button>
+        <button class="swatch" data-name="Ember" data-bg="#f5a623" style="background:#f5a623;" aria-label="Amber"></button>
+        <button class="swatch" data-name="Coral" data-bg="#e05c5c" style="background:#e05c5c;" aria-label="Coral red"></button>
+        <button class="swatch" data-name="Iris" data-bg="#7c6aff" style="background:#7c6aff;" aria-label="Iris purple"></button>
+        <button class="swatch" data-name="Sky" data-bg="#3ab4f2" style="background:#3ab4f2;" aria-label="Sky blue"></button>
+        <button class="swatch" data-name="Lime" data-bg="#6cc644" style="background:#6cc644;" aria-label="Lime green"></button>
+      </div>
+      <div class="color-preview" id="color-preview" style="background:#00d4aa;">
+        <div class="color-preview-icon">🎨</div>
+        <div class="color-preview-text">
+          <h3 id="preview-name">Ocean</h3>
+          <p id="preview-hex">#00d4aa · Active accent color</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- - Footer - -->
+<footer>
+  <div class="container">
+    <p>Built for <strong>DecodeLabs</strong> · Frontend Development · Project 3 · Batch 2026</p>
+    <p style="margin-top:8px;font-size:.78rem;">Engineering the Client-Side Nervous System</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
