@@ -1,3 +1,5 @@
+**Project 3 - Interactive Web Elements**
+
 **01 · Dark Mode Toggle**
 
 Switches the entire page between light and dark themes
